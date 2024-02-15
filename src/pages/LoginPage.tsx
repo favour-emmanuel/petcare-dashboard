@@ -10,6 +10,8 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useNavigate } from "react-router-dom";
 import { IoMoonOutline } from "react-icons/io5";
 import { GoSun } from "react-icons/go";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTheme, setTheme } from "../Redux/slice/themeSlice";
 
 interface Schema {
   email: string;
@@ -35,21 +37,35 @@ const LoginPage = () => {
     navigate("/dashboard");
   });
 
+  const theme = useSelector(selectTheme);
+  const dispatch = useDispatch();
+
+  const changeTheme = () => {
+    if (theme?.theme === "Dark") {
+      dispatch(setTheme({ theme: "Light" }));
+    } else {
+      dispatch(setTheme({ theme: "Dark" }));
+    }
+  };
+
   return (
-    <div>
+    <div
+      className={
+        theme?.theme === "Light" ? "bg-apppureWhite" : "bg-appdarkModeBlack"
+      }
+    >
       <div className="pt-7 flex justify-center items-center gap-8 pb-6">
         <div className="flex items-center gap-3">
           <img src={logo} alt="logo" />
           <h1 className="font-medium text-base">PetCare.</h1>
         </div>
-        <div className="relative r">
-          <button className="flex items-center">
-            <IoMoonOutline className="absolute right-0" />
+        <div className="relative">
+          <button onClick={changeTheme} className="flex items-center">
+            {theme?.theme === "Light" ? <GoSun /> : <IoMoonOutline />}
           </button>
-          {/* <GoSun /> */}
         </div>
       </div>
-      <div className="flex justify-center items-center bg-apppureWhite">
+      <div className="flex justify-center items-center  ">
         <div className=" w-full max-w-[40rem] mx-auto flex  text-appwhite rounded-md">
           {/* input fields */}
           <form onSubmit={onsubmit} className="bg-appNavyGray w-full py-6 px-7">
@@ -106,5 +122,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

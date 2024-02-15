@@ -13,6 +13,7 @@ export default {
         appNavyGray: "#0B1C33",
         appBlack: "#0B1C33",
         appRed: "#E53761",
+        appdarkModeBlack: "#0d0d0d",
       },
     },
   },
