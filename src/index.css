@@ -1,3 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-rethink text-appNavyGray;
+}
+
+.side__list {
+  @apply py-2 px-3  flex items-center rounded-md gap-5 font-medium text-xs;
+}
+
+.ul__label {
+  @apply uppercase text-base py-3 font-medium text-sm;
+}
