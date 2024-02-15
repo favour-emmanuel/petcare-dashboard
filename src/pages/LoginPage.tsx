@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <div className="pt-7 flex justify-center items-center gap-8 pb-4">
+      <div className="pt-7 flex justify-center items-center gap-8 pb-6">
         <div className="flex items-center gap-3">
           <img src={logo} alt="logo" />
           <h1 className="font-medium text-base">PetCare.</h1>
@@ -52,10 +52,7 @@ const LoginPage = () => {
       <div className="flex justify-center items-center bg-apppureWhite">
         <div className=" w-full max-w-[40rem] mx-auto flex  text-appwhite rounded-md">
           {/* input fields */}
-          <form
-            onSubmit={onsubmit}
-            className="bg-appNavyGray w-full py-6  px-7"
-          >
+          <form onSubmit={onsubmit} className="bg-appNavyGray w-full py-6 px-7">
             <h1 className="pt-10 text-xl font-bold text-appwhite">Welcome !</h1>
             <div className="flex flex-col py-3">
               <label htmlFor="" className="py-1 text-sm">
@@ -102,7 +99,7 @@ const LoginPage = () => {
           {/* image */}
           <div className="w-full max-w-[34rem] flex-1 relative rounded-md">
             <img src={image} className="max-w-[19rem]" alt="login image" />
-            <div className="bg-black  opacity-30 top-0 w-full max-w-[19rem] absolute h-full"></div>
+            <div className="bg-[#00000011] top-0 w-full max-w-[19rem] absolute h-full"></div>
           </div>
         </div>
       </div>
