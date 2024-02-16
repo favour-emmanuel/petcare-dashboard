@@ -1,6 +1,6 @@
 
 
-export  type Theme="Light"|"Dark"|null|string;
+export  type Theme="Light"|"Dark";
 
 export interface ThemeProps {
     theme:Theme;

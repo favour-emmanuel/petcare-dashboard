@@ -9,10 +9,18 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 import chatLogo from "../../assets/chatheads-icons.svg";
 import { TbSettings2 } from "react-icons/tb";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../../Redux/slice/themeSlice";
 
 const Siderbar = () => {
+  const theme = useSelector(selectTheme);
+
   return (
-    <div className="bg-apppureWhite border-r border-r-[#DAE3F8] pt-2 px-8 w-full max-w-[17rem]">
+    <div
+      className={`border-r border-r-[#DAE3F8] pt-2 px-8 w-full max-w-[17rem] ${
+        theme?.theme === "Light" ? "bg-apppureWhite" : "bg-appdarkModeBlack"
+      }`}
+    >
       <div className="flex items-center gap-3 pt-8">
         <img src={logo} alt="logo" />
         <h1 className="font-medium text-base">PetCare.</h1>

@@ -13,14 +13,19 @@ const Header = () => {
   const changeTheme = () => {
     if (theme?.theme === "Dark") {
       dispatch(setTheme({ theme: "Light" }));
+
+      localStorage.setItem("myapptheme", "Light");
     } else {
       dispatch(setTheme({ theme: "Dark" }));
+      localStorage.setItem("myapptheme", "Dark");
     }
   };
   return (
     <div
       className={`flex justify-between gap-10 items-center py-5 px-6 border-b borde-b-[#DAE3F8] ${
-        theme?.theme === "Light" ? " bg-apppureWhite border-[#CDD1D6]" : ""
+        theme?.theme === "Light"
+          ? " bg-apppureWhite border-[#CDD1D6]"
+          : " bg-appdarkModeBlack"
       }`}
     >
       <div

@@ -43,8 +43,10 @@ const LoginPage = () => {
   const changeTheme = () => {
     if (theme?.theme === "Dark") {
       dispatch(setTheme({ theme: "Light" }));
+      localStorage.setItem("myapptheme", "Light");
     } else {
       dispatch(setTheme({ theme: "Dark" }));
+      localStorage.setItem("myapptheme", "Dark");
     }
   };
 
@@ -54,16 +56,14 @@ const LoginPage = () => {
         theme?.theme === "Light" ? "bg-apppureWhite" : "bg-[#262626]"
       }`}
     >
-      <div className="pt-7 flex justify-center items-center gap-8 pb-6">
+      <div
+        className={`pt-7 flex justify-center items-center gap-8 pb-6 ${
+          theme?.theme === "Dark" ? "text-apppureWhite" : ""
+        }`}
+      >
         <div className="flex items-center gap-3">
           <img src={logo} alt="logo" />
-          <h1
-            className={`font-medium text-base ${
-              theme?.theme === "Dark" ? "text-apppureWhite" : ""
-            }`}
-          >
-            PetCare.
-          </h1>
+          <h1 className="font-medium text-base">PetCare.</h1>
         </div>
         <div className="relative">
           <button
