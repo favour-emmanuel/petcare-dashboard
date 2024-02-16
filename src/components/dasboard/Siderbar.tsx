@@ -18,7 +18,9 @@ const Siderbar = () => {
   return (
     <div
       className={`border-r border-r-[#DAE3F8] pt-2 px-8 w-full max-w-[17rem] ${
-        theme?.theme === "Light" ? "bg-apppureWhite" : "bg-appdarkModeBlack"
+        theme?.theme === "Light"
+          ? "bg-apppureWhite "
+          : "bg-appdarkModeBlack text-white"
       }`}
     >
       <div className="flex items-center gap-3 pt-8">
