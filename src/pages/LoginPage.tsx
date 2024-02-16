@@ -50,17 +50,28 @@ const LoginPage = () => {
 
   return (
     <div
-      className={
-        theme?.theme === "Light" ? "bg-apppureWhite" : "bg-appdarkModeBlack"
-      }
+      className={`min-h-screen ${
+        theme?.theme === "Light" ? "bg-apppureWhite" : "bg-[#262626]"
+      }`}
     >
       <div className="pt-7 flex justify-center items-center gap-8 pb-6">
         <div className="flex items-center gap-3">
           <img src={logo} alt="logo" />
-          <h1 className="font-medium text-base">PetCare.</h1>
+          <h1
+            className={`font-medium text-base ${
+              theme?.theme === "Dark" ? "text-apppureWhite" : ""
+            }`}
+          >
+            PetCare.
+          </h1>
         </div>
         <div className="relative">
-          <button onClick={changeTheme} className="flex items-center">
+          <button
+            onClick={changeTheme}
+            className={`flex items-center text-xl ${
+              theme?.theme === "Dark" ? "text-apppureWhite" : ""
+            }`}
+          >
             {theme?.theme === "Light" ? <GoSun /> : <IoMoonOutline />}
           </button>
         </div>
@@ -68,7 +79,14 @@ const LoginPage = () => {
       <div className="flex justify-center items-center  ">
         <div className=" w-full max-w-[40rem] mx-auto flex  text-appwhite rounded-md">
           {/* input fields */}
-          <form onSubmit={onsubmit} className="bg-appNavyGray w-full py-6 px-7">
+          <form
+            onSubmit={onsubmit}
+            className={`w-full py-6 px-7 ${
+              theme?.theme === "Light"
+                ? "bg-appNavyGray"
+                : "bg-appdarkModeBlack"
+            }`}
+          >
             <h1 className="pt-10 text-xl font-bold text-appwhite">Welcome !</h1>
             <div className="flex flex-col py-3">
               <label htmlFor="" className="py-1 text-sm">
@@ -122,3 +140,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
+export default LoginPage;

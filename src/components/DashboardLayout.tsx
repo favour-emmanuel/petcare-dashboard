@@ -2,11 +2,20 @@ import React from "react";
 import Header from "./dasboard/Header";
 import Siderbar from "./dasboard/Siderbar";
 import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectTheme } from "../Redux/slice/themeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTheme, setTheme } from "../Redux/slice/themeSlice";
 
 const DashboardLayout = () => {
   const theme = useSelector(selectTheme);
+  const dispatch = useDispatch();
+
+  const changeTheme = () => {
+    if (theme?.theme === "Dark") {
+      dispatch(setTheme({ theme: "Light" }));
+    } else {
+      dispatch(setTheme({ theme: "Dark" }));
+    }
+  };
 
   return (
     <div
