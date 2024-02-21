@@ -13,5 +13,5 @@ body {
 }
 
 .ul__label {
-  @apply uppercase text-base py-3 font-medium text-sm;
+  @apply uppercase py-3 font-medium text-sm;
 }

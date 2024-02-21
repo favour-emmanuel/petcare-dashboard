@@ -7,6 +7,7 @@ import PetprofilePage from "./pages/dashboardPages/PetprofilePage";
 import { useDispatch } from "react-redux";
 import { setTheme } from "./Redux/slice/themeSlice";
 import { Theme } from "./types";
+import HealthMonotoring from "./pages/dashboardPages/HealthMonotoring";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,13 +28,14 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route
-              path="/dashboard/dashboardpages"
-              element={<DashboaardPage />}
-            />
+            <Route index element={<DashboaardPage />} />
             <Route
               path="/dashboard/petprofilepage"
               element={<PetprofilePage />}
+            />
+            <Route
+              path="/dashboard/healthmonitoring"
+              element={<HealthMonotoring />}
             />
           </Route>
         </Routes>

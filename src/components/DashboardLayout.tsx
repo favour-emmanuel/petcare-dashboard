@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "./dasboard/Header";
 import Siderbar from "./dasboard/Siderbar";
 import { Outlet } from "react-router-dom";

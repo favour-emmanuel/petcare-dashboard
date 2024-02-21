@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../../assets/logo.svg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdOutlinePets } from "react-icons/md";
@@ -11,9 +10,121 @@ import { TbSettings2 } from "react-icons/tb";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { selectTheme } from "../../Redux/slice/themeSlice";
+import { useLocation, useNavigate } from "react-router-dom";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Siderbar = () => {
   const theme = useSelector(selectTheme);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname === "/dashboard");
+
+  const sidedata = {
+    categories: [
+      {
+        title: "Menu",
+
+        submenus: [
+          {
+            icon: <LuLayoutDashboard />,
+            listItem: "Dashboard",
+            path: "/dashboard",
+            onClick: () => {},
+          },
+          {
+            icon: <MdOutlinePets />,
+            listItem: "petprofile",
+            path: "/dashboard/petprofilepage",
+            onClick: () => {},
+          },
+        ],
+      },
+    ],
+  };
+
+  const sidebarData = {
+    categories: [
+      {
+        labelHeading: "menu",
+        subMenus: [
+          {
+            icon: <LuLayoutDashboard />,
+            listItem: "Dashboard",
+            path: "/dashboard",
+            labelHeading: "menu",
+            onclick: () => {
+              navigate("/dashboard");
+            },
+          },
+          {
+            icon: <MdOutlinePets />,
+            listItem: "petprofile",
+            path: "/dashboard/petprofilepage",
+            onclick: () => {
+              navigate("/dashboard/petprofilepage");
+            },
+          },
+        ],
+      },
+
+      {
+        labelHeading: "analytics",
+        subMenus: [
+          {
+            icon: <TbHealthRecognition />,
+            listItem: "Health Monitoring",
+            path: "/dashboard/healthmonitoring",
+            onclick: () => {
+              navigate("/dashboard/healthmonitoring");
+            },
+          },
+          {
+            icon: <TbVaccine />,
+            listItem: "Vaccination Schedule ",
+            path: "",
+            onclick: () => {},
+          },
+        ],
+      },
+
+      {
+        labelHeading: "schedule",
+        subMenus: [
+          {
+            icon: <BsChatSquareText />,
+            listItem: "Chat ",
+            path: "",
+            onclick: () => {},
+          },
+          {
+            icon: <MdOutlineCalendarMonth />,
+            listItem: "Appointment ",
+            path: "",
+            onclick: () => {},
+          },
+        ],
+      },
+      {
+        labelHeading: "help",
+        subMenus: [
+          {
+            icon: <TbSettings2 />,
+            listItem: "Settings ",
+            path: "",
+            onclick: () => {},
+          },
+
+          {
+            icon: <HiOutlineDocumentText />,
+            listItem: "Documentation ",
+            path: "",
+            onclick: () => {},
+          },
+        ],
+      },
+    ],
+  };
 
   return (
     <div
@@ -27,43 +138,44 @@ const Siderbar = () => {
         <img src={logo} alt="logo" />
         <h1 className="font-medium text-base">PetCare.</h1>
       </div>
-      {/* menu */}
-      <ul className="pt-8 border-b">
-        <h3 className="ul__label">menu</h3>
-        <li className="bg-appBlue text-white py-2.5 px-3 w-[13rem] flex items-center rounded-md gap-5 text-sm my-2">
-          <LuLayoutDashboard />
-          Dashboard
-        </li>
-        <li className="side__list mb-5 mt-1">
-          <MdOutlinePets />
-          petprofile
-        </li>
-      </ul>
-      {/* analytics */}
-      <ul className="pt-4 border-b">
-        <h3 className="ul__label">analytics</h3>
-        <li className="side__list mt-1">
-          <TbHealthRecognition />
-          Health Monitoring
-        </li>
-        <li className="side__list mb-5 mt-1">
-          <TbVaccine />
-          Vaccination Schedule
-        </li>
-      </ul>
+      {/* sidebar menu list */}
+      <div className="pt-7">
+        {sidebarData.categories.map((category) => {
+          return (
+            <div>
+              <h3 className="ul__label">{category.labelHeading}</h3>
+              <ul>
+                {category.subMenus.map((submenu) => {
+                  return (
+                    <li
+                      onClick={submenu.onclick}
+                      className={`${
+                        location.pathname === submenu.path
+                          ? "bg-appBlue text-white"
+                          : ""
+                      } py-2.5 px-3 w-[13rem] flex items-center rounded-md gap-5 text-sm my-2 cursor-pointer text-appNavyGray`}
+                    >
+                      {submenu.icon} {submenu.listItem}
+                    </li>
+                  );
+                })}
+              </ul>
+              <hr />
+            </div>
+          );
+        })}
+        <hr />
+      </div>
+
       {/* schedule */}
       <ul className="pt-4 border-b">
         <h3 className="ul__label">Schedule</h3>
         <div className="flex justify-between">
-          <li className="side__list">
-            <BsChatSquareText className="" />
-            Chat
-          </li>
           <img src={chatLogo} alt="chat logo" />
         </div>
         <div className="flex justify-between mt-1.5">
           <li className="side__list mb-5">
-            <MdOutlineCalendarMonth className="" />
+            <MdOutlineCalendarMonth />
             Appointments
           </li>
           <div>
@@ -73,17 +185,12 @@ const Siderbar = () => {
           </div>
         </div>
       </ul>
-      <ul className="pt-4 border-b">
-        <h3 className="ul__label">Help</h3>
-        <li className="side__list mt-1">
-          <TbSettings2 />
-          Settings
+
+      <div className="relative pt-10">
+        <li className="side__list absolute text-appRed cursor-pointer">
+          <IoLogOutOutline /> Log out
         </li>
-        <li className="side__list mb-5 mt-1">
-          <HiOutlineDocumentText />
-          Documentation
-        </li>
-      </ul>
+      </div>
     </div>
   );
 };
